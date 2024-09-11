@@ -17,12 +17,12 @@ APP_NAME = METADATA["name"]
 
 
 @pytest.mark.abort_on_fail
-async def test_build_and_deploy(ops_test: OpsTest):
+async def test_build_and_deploy(ops_test: OpsTest, request):
     """Build the charm-under-test and deploy it.
 
     Assert on the unit status.
     """
-    charm = await ops_test.build_charm(".")
+    charm = Path(request.config.getoption("--charm_path")).resolve()
     resources = {"nginx-image": METADATA["resources"]["nginx-image"]["upstream-source"]}
     await asyncio.gather(
         ops_test.model.deploy(charm, resources=resources, application_name=APP_NAME),
