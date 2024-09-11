@@ -20,10 +20,11 @@ requires:
 parts:
   charm:
     build-packages:
+      - cargo
       - libffi-dev
       - libssl-dev
+      - pkg-config
       - rustc
-      - cargo
 
 containers:
   nginx:
