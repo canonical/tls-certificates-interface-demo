@@ -8,12 +8,9 @@
 import logging
 
 import ops
-from jinja2 import Environment, FileSystemLoader
 
 logger = logging.getLogger(__name__)
 
-CONFIG_TEMPLATE_DIR_PATH = "src/templates/"
-CONFIG_TEMPLATE_NAME = "default.conf.j2"
 CONFIG_DIR_PATH = "/etc/nginx/conf.d"
 CONFIG_FILE_NAME = "default.conf"
 HTTP_PORT = 8080
@@ -63,9 +60,9 @@ class TlsCertificatesInterfaceDemoCharm(ops.CharmBase):
         self.container.replan()
 
     def _generate_config_file(self) -> str:
-        return render_config_file(
-            http_port=HTTP_PORT,
-        )
+        with open(f"src/{CONFIG_FILE_NAME}") as f:
+            config_file = f.read()
+        return config_file
 
     def _is_config_update_required(self, content: str) -> bool:
         if not self._config_file_is_written() or not self._config_file_content_matches(
@@ -118,16 +115,6 @@ class TlsCertificatesInterfaceDemoCharm(ops.CharmBase):
                 },
             }
         )
-
-
-def render_config_file(http_port: int) -> str:
-    """Render the config file."""
-    jinja2_environment = Environment(loader=FileSystemLoader(CONFIG_TEMPLATE_DIR_PATH))
-    template = jinja2_environment.get_template(CONFIG_TEMPLATE_NAME)
-    content = template.render(
-        http_port=http_port,
-    )
-    return content
 
 
 if __name__ == "__main__":  # pragma: nocover
