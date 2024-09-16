@@ -69,10 +69,8 @@ oauthlib==3.2.2
     #   kubernetes
     #   requests-oauthlib
 ops==2.16.1
-    # via
-    #   -c requirements.txt
-    #   ops-scenario
-ops-scenario==7.0.1
+    # via ops-scenario
+ops-scenario==7.0.2
     # via -r test-requirements.in
 packaging==24.1
     # via
@@ -133,7 +131,6 @@ pytz==2024.2
     # via pyrfc3339
 pyyaml==6.0.2
     # via
-    #   -c requirements.txt
     #   juju
     #   kubernetes
     #   ops
@@ -149,7 +146,7 @@ requests-oauthlib==2.0.0
     # via kubernetes
 rsa==4.9
     # via google-auth
-ruff==0.6.4
+ruff==0.6.5
     # via -r test-requirements.in
 six==1.16.0
     # via
@@ -178,7 +175,6 @@ wcwidth==0.2.13
     # via prompt-toolkit
 websocket-client==1.8.0
     # via
-    #   -c requirements.txt
     #   kubernetes
     #   ops
 websockets==13.0.1
