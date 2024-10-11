@@ -11,7 +11,7 @@ from typing import Optional
 import ops
 from charms.tls_certificates_interface.v4.tls_certificates import (
     Certificate,
-    CertificateRequest,
+    CertificateRequestAttributes,
     Mode,
     PrivateKey,
     TLSCertificatesRequiresV4,
@@ -37,7 +37,7 @@ class TlsCertificatesInterfaceDemoCharm(ops.CharmBase):
         self.certificates = TLSCertificatesRequiresV4(
             charm=self,
             relationship_name="certificates",
-            certificate_requests=[self._get_certificate_request()],
+            certificate_requests=[self._get_certificate_request_attributes()],
             mode=Mode.UNIT,
         )
         framework.observe(self.on["nginx"].pebble_ready, self._configure)
@@ -74,15 +74,15 @@ class TlsCertificatesInterfaceDemoCharm(ops.CharmBase):
         should_restart = config_update_required or certificate_update_required
         self._configure_pebble(restart=should_restart)
 
-    def _get_certificate_request(self) -> CertificateRequest:
-        return CertificateRequest(common_name="example.com")
+    def _get_certificate_request_attributes(self) -> CertificateRequestAttributes:
+        return CertificateRequestAttributes(common_name="example.com")
 
     def _relation_created(self, relation_name: str) -> bool:
         return bool(self.model.relations.get(relation_name))
 
     def _certificate_is_available(self) -> bool:
         cert, key = self.certificates.get_assigned_certificate(
-            certificate_request=self._get_certificate_request()
+            certificate_request=self._get_certificate_request_attributes()
         )
         return bool(cert and key)
 
@@ -98,7 +98,7 @@ class TlsCertificatesInterfaceDemoCharm(ops.CharmBase):
             bool: True if either the certificate or the private key was updated, False otherwise.
         """
         provider_certificate, private_key = self.certificates.get_assigned_certificate(
-            certificate_request=self._get_certificate_request()
+            certificate_request=self._get_certificate_request_attributes()
         )
         if not provider_certificate or not private_key:
             logger.debug("Certificate or private key is not available")
