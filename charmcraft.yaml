@@ -13,6 +13,19 @@ bases:
     - name: ubuntu
       channel: "22.04"
 
+requires:
+  certificates:
+    interface: tls-certificates
+
+parts:
+  charm:
+    build-packages:
+      - cargo
+      - libffi-dev
+      - libssl-dev
+      - pkg-config
+      - rustc
+
 containers:
   nginx:
     resource: nginx-image
