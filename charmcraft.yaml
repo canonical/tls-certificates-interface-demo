@@ -14,6 +14,17 @@ parts:
   charm:
     source: .
     plugin: charm
+    build-packages:
+      - cargo
+      - libffi-dev
+      - libssl-dev
+      - pkg-config
+      - rustc
+
+requires:
+  certificates:
+    interface: tls-certificates
+    limit: 1
 
 containers:
   nginx:
