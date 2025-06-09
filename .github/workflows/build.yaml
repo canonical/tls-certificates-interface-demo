@@ -9,9 +9,8 @@ jobs:
       matrix:
         arch:
           - arch: amd64
-            runner: ubuntu-22.04
-          - arch: arm64
-            runner: [self-hosted, linux, ARM64, medium, jammy]
+            runner: ubuntu-24.04
+
     runs-on: ${{ matrix.arch.runner }}
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +18,7 @@ jobs:
       - name: Setup LXD
         uses: canonical/setup-lxd@main
         with:
-            channel: 5.20/stable
+            channel: 5.21/stable
     
       - name: Install charmcraft
         run: sudo snap install charmcraft --classic
