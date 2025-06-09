@@ -4,13 +4,15 @@
 #
 #    pip-compile --constraint=requirements.txt test-requirements.in
 #
-asttokens==2.4.1
+asttokens==3.0.0
     # via stack-data
-bcrypt==4.2.0
+backports-datetime-fromisoformat==2.0.3
+    # via juju
+bcrypt==4.3.0
     # via paramiko
-cachetools==5.5.0
+cachetools==5.5.2
     # via google-auth
-certifi==2024.8.30
+certifi==2025.4.26
     # via
     #   kubernetes
     #   requests
@@ -18,37 +20,44 @@ cffi==1.17.1
     # via
     #   cryptography
     #   pynacl
-charset-normalizer==3.3.2
+charset-normalizer==3.4.2
     # via requests
-codespell==2.3.0
+codespell==2.4.1
     # via -r test-requirements.in
-coverage[toml]==7.6.1
+coverage[toml]==7.8.2
     # via -r test-requirements.in
-cryptography==43.0.1
+cryptography==45.0.3
     # via paramiko
-decorator==5.1.1
+decorator==5.2.1
     # via
     #   ipdb
     #   ipython
-executing==2.1.0
+executing==2.2.0
     # via stack-data
-google-auth==2.34.0
+google-auth==2.40.3
     # via kubernetes
 hvac==2.3.0
     # via juju
-idna==3.8
+idna==3.10
     # via requests
-iniconfig==2.0.0
+importlib-metadata==8.7.0
+    # via
+    #   -c requirements.txt
+    #   opentelemetry-api
+    #   ops
+iniconfig==2.1.0
     # via pytest
 ipdb==0.13.13
     # via pytest-operator
-ipython==8.27.0
+ipython==9.3.0
     # via ipdb
-jedi==0.19.1
+ipython-pygments-lexers==1.1.1
     # via ipython
-jinja2==3.1.4
+jedi==0.19.2
+    # via ipython
+jinja2==3.1.6
     # via pytest-operator
-juju==3.5.2.0
+juju==3.6.1.2
     # via
     #   -r test-requirements.in
     #   pytest-operator
@@ -56,11 +65,11 @@ kubernetes==30.1.0
     # via juju
 macaroonbakery==1.3.4
     # via juju
-markupsafe==2.1.5
+markupsafe==3.0.2
     # via jinja2
 matplotlib-inline==0.1.7
     # via ipython
-mypy-extensions==1.0.0
+mypy-extensions==1.1.0
     # via typing-inspect
 nodeenv==1.9.1
     # via pyright
@@ -68,27 +77,31 @@ oauthlib==3.2.2
     # via
     #   kubernetes
     #   requests-oauthlib
-ops==2.16.1
+opentelemetry-api==1.34.0
+    # via
+    #   -c requirements.txt
+    #   ops
+ops==2.22.0
     # via
     #   -c requirements.txt
     #   ops-scenario
-ops-scenario==7.0.1
+ops-scenario==7.22.0
     # via -r test-requirements.in
-packaging==24.1
+packaging==25.0
     # via
     #   juju
     #   pytest
-paramiko==3.4.1
+paramiko==3.5.1
     # via juju
 parso==0.8.4
     # via jedi
 pexpect==4.9.0
     # via ipython
-pluggy==1.5.0
+pluggy==1.6.0
     # via pytest
-prompt-toolkit==3.0.47
+prompt-toolkit==3.0.51
     # via ipython
-protobuf==5.28.0
+protobuf==6.31.1
     # via macaroonbakery
 ptyprocess==0.7.0
     # via pexpect
@@ -99,12 +112,15 @@ pyasn1==0.6.1
     #   juju
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.4.1
+pyasn1-modules==0.4.2
     # via google-auth
 pycparser==2.22
     # via cffi
-pygments==2.18.0
-    # via ipython
+pygments==2.19.1
+    # via
+    #   ipython
+    #   ipython-pygments-lexers
+    #   pytest
 pymacaroons==0.13.0
     # via macaroonbakery
 pynacl==1.5.0
@@ -113,23 +129,21 @@ pynacl==1.5.0
     #   paramiko
     #   pymacaroons
 pyrfc3339==1.1
-    # via
-    #   juju
-    #   macaroonbakery
-pyright==1.1.380
+    # via macaroonbakery
+pyright==1.1.401
     # via -r test-requirements.in
-pytest==8.3.3
+pytest==8.4.0
     # via
     #   -r test-requirements.in
     #   pytest-asyncio
     #   pytest-operator
 pytest-asyncio==0.21.2
     # via pytest-operator
-pytest-operator==0.36.0
+pytest-operator==0.42.0
     # via -r test-requirements.in
 python-dateutil==2.9.0.post0
     # via kubernetes
-pytz==2024.2
+pytz==2025.2
     # via pyrfc3339
 pyyaml==6.0.2
     # via
@@ -139,7 +153,7 @@ pyyaml==6.0.2
     #   ops
     #   ops-scenario
     #   pytest-operator
-requests==2.32.3
+requests==2.32.4
     # via
     #   hvac
     #   kubernetes
@@ -147,13 +161,12 @@ requests==2.32.3
     #   requests-oauthlib
 requests-oauthlib==2.0.0
     # via kubernetes
-rsa==4.9
+rsa==4.9.1
     # via google-auth
-ruff==0.6.4
+ruff==0.11.13
     # via -r test-requirements.in
-six==1.16.0
+six==1.17.0
     # via
-    #   asttokens
     #   kubernetes
     #   macaroonbakery
     #   pymacaroons
@@ -166,11 +179,16 @@ traitlets==5.14.3
     # via
     #   ipython
     #   matplotlib-inline
-typing-extensions==4.12.2
-    # via typing-inspect
+typing-extensions==4.14.0
+    # via
+    #   -c requirements.txt
+    #   juju
+    #   opentelemetry-api
+    #   pyright
+    #   typing-inspect
 typing-inspect==0.9.0
     # via juju
-urllib3==2.2.2
+urllib3==2.4.0
     # via
     #   kubernetes
     #   requests
@@ -181,5 +199,9 @@ websocket-client==1.8.0
     #   -c requirements.txt
     #   kubernetes
     #   ops
-websockets==13.0.1
+websockets==15.0.1
     # via juju
+zipp==3.23.0
+    # via
+    #   -c requirements.txt
+    #   importlib-metadata
