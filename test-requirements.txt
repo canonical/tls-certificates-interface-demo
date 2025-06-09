@@ -28,7 +28,9 @@ codespell==2.4.1
 coverage[toml]==7.8.2
     # via -r test-requirements.in
 cryptography==45.0.3
-    # via paramiko
+    # via
+    #   -c requirements.txt
+    #   paramiko
 decorator==5.2.1
     # via
     #   ipdb
@@ -116,7 +118,9 @@ pyasn1==0.6.1
 pyasn1-modules==0.4.2
     # via google-auth
 pycparser==2.22
-    # via cffi
+    # via
+    #   -c requirements.txt
+    #   cffi
 pygments==2.19.1
     # via
     #   ipython
